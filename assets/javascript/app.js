@@ -10,8 +10,7 @@ var config = {
 
 firebase.initializeApp(config);
 
-// variables
-// =======================================
+// -------------- variables --------------
 var database = firebase.database();
 
 //Declaring the current time
@@ -20,16 +19,15 @@ console.log("current time: " + currentTime);
 var name = "";
 var destination = "";
 var start = "";
-var frequency = "";
+var frequency = 0;
 var nextArrival = "";
-var minutesAway = "";
 
 
 // submit button click event
 $("#submit-btn").on("click", function (event) {
     event.preventDefault();
 
-    // getting data
+    // store user input in variables
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
     // .format("X") is a unix timestamp
@@ -43,7 +41,6 @@ $("#submit-btn").on("click", function (event) {
         start: start,
         frequency: frequency
     });
-    
     // clears textboxes after submit
     clearInputs();
 });
@@ -51,40 +48,26 @@ $("#submit-btn").on("click", function (event) {
 // database children
 database.ref().on("child_added", function (childSnapshot) {
 
-    // store database values in variables 
+    // store values in variables
     var trainName = childSnapshot.val().name;
     var trainDestination = childSnapshot.val().destination;
-    var trainTime = childSnapshot.val().start;
-    var trainFrequency = childSnapshot.val().frequency;
+    var trainTimeInput = childSnapshot.val().start;
+    var frequency = childSnapshot.val().frequency;
 
-    // convert current time into a nice HH:MM format
-    var trainStartPretty = moment.unix(trainTime).format("HH:mm A");
-    console.log("start time: " + trainStartPretty);
+    // --------------calculations ---------------------
+    var diffTime = moment().diff(moment.unix(trainTimeInput), "minutes");
+    var timeRemainder = moment().diff(moment.unix(trainTimeInput), "minutes") % frequency;
+    var minutes = frequency - timeRemainder;
 
-    //convert train time
-    var trainTimeConverted = moment(trainTime, "HH:mm");
-    console.log(trainTimeConverted);
+    var nextTrainArrival = moment().add(minutes, "m").format("hh:mm A");
+    console.log("Next Arrival: " + nextTrainArrival);
+    // -------------calculations section end ----------------
 
-    //subtracting time
-    var timeDifference = moment().diff(moment(trainTimeConverted), "minutes");
-    console.log("time difference in minutes: " + timeDifference);
-
-    //   setting frequency in variable
-    var frequencyMinutes = childSnapshot.val().frequency;
-    console.log("Frequency Minutes: " + frequencyMinutes);
-
-    //   getting the number of minutes away
-    var minutesAway = Math.abs(timeDifference % frequencyMinutes);
-    console.log("Minutes Away: " + minutesAway);
-
-    // getting the next arrival time
-    var nextArrival = moment(currentTime).add(minutesAway, "minutes").format("hh:mm A");
-    console.log("Next Arrival: " + nextArrival);
 
     //   appending the data to the table
     $("#trainData").append("<tr><td>" + trainName + "</td><td>" +
-        trainDestination + "</td><td>" + trainFrequency + "</td><td>" +
-        nextArrival + "</td><td>" + minutesAway + "</td></tr>");
+        trainDestination + "</td><td>" + frequency + "</td><td>" +
+        nextTrainArrival + "</td><td>" + minutes + "</td></tr>");
 
 
     // Handle the errors
