@@ -14,6 +14,10 @@ h2{
     color: white;
 }
 
+#train-form{
+    size: 100%;
+}
+
 
 /* ----------- add train form ----------- */
 input, label {
