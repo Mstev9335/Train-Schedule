@@ -48,12 +48,14 @@ $("#submit-btn").on("click", function (event) {
 
 // database children
 database.ref().on("child_added", function (childSnapshot) {
+    // store database values in variables 
     var trainName = childSnapshot.val().name;
     var trainDestination = childSnapshot.val().destination;
     var trainTime = childSnapshot.val().start;
     var trainFrequency = childSnapshot.val().frequency;
 
-    var trainStartPretty = moment.unix(trainTime).format("HH:mm");
+    // convert current time into a nice HH:MM format
+    var trainStartPretty = moment.unix(trainTime).format("HH:mm A");
     console.log("start time: "+ trainStartPretty);
 
     //Variable to figure out the converted train time
