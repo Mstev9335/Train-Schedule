@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Firebase Train Schedule</title>
+    <!-- linking bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- Linking style Sheet -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- Linking Moment JS -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron" >
+            <h1>Train Schedule</h1>
+            <h2></h2>
+        </div>
+        <!-- current train schedule container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2> Current Train Schedule</h2>
+                    <table class="table">
+                        <!-- table head -->
+                        <thead>
+                            <tr>
+                                <th>Train Name</th>
+                                <th>Destination</th>
+                                <th>Frequency</th>
+                                <th>Next Arrival</th>
+                                <th>Minutes Away</th>
+                            </tr>
+                        </thead>
+                        <!-- table body -->
+                        <tbody id="emplData">
+                        
+                        </tbody>
+                    </table>
+                </div>
+                <!-- current train schedule container end -->
+                <!-- add train container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- form to add new train -->
+                            <h2> Add Train</h2>
+                            <form id="train-form" size="100%">
+                                <label for="name-input" id="label">Train name: </label>
+                                <input type="text" id="name-input" class="form-control" size="100%">
+                                <br>
+                                <label for="destination-input" id="label">Destination: </label>
+                                <input type="text" id="destination-input" class="form-control">
+                                <br>
+                                <label for="firstTime-input" id="label">First train time(HH:MM): </label>
+                                <input type="text" id="firstTime-input" class="form-control">
+                                <br>
+                                <label for="frequency-input" id="label">Frequency(Minutes): </label>
+                                <input type="text" id="frequency-input" class="form-control">
+                                <!-- Button triggers new train to be added -->
+                                <br>
+                                <button id="submit-btn" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- add train container end -->
+
+                <!-- Firebase Reference -->
+                <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+                <!-- linking jquery -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                <!-- linking javascript -->
+      <script src="assets/javascript/app.js"></script>
+              
+</body>
+
+</html>

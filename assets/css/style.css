@@ -1,0 +1,29 @@
+/* headings */
+h1{
+    text-align: center;
+    font-size: 40px;
+}
+
+.jumbotron{
+    background-color: grey;
+}
+h2{
+    padding-left: 10px;
+    background-color: blue;
+    color: white;
+}
+
+
+/* ----------- add train form ----------- */
+input, label {
+    display:block;
+}
+
+#add-train{
+    background-color: blue;
+    color: white;
+    font-size: 20px;
+
+}
+
+/* --------- add train form end --------- */
