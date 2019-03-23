@@ -14,6 +14,10 @@ h2{
     color: white;
 }
 
+body{
+    background-image: url(../images/dust_scratches.png);
+}
+
 #train-form{
     size: 100%;
 }
