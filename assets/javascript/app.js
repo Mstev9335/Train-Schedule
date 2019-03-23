@@ -16,7 +16,7 @@ var database = firebase.database();
 
 //Declaring the current time
 var currentTime = moment().format();
-console.log("current time: "+ currentTime);
+console.log("current time: " + currentTime);
 var name = "";
 var destination = "";
 var start = "";
@@ -43,6 +43,8 @@ $("#submit-btn").on("click", function (event) {
         start: start,
         frequency: frequency
     });
+    
+    // clears textboxes after submit
     clearInputs();
 });
 
@@ -57,40 +59,38 @@ database.ref().on("child_added", function (childSnapshot) {
 
     // convert current time into a nice HH:MM format
     var trainStartPretty = moment.unix(trainTime).format("HH:mm A");
-    console.log("start time: "+ trainStartPretty);
+    console.log("start time: " + trainStartPretty);
 
     //convert train time
     var trainTimeConverted = moment(trainTime, "HH:mm");
     console.log(trainTimeConverted);
-       
+
     //subtracting time
     var timeDifference = moment().diff(moment(trainTimeConverted), "minutes");
-      console.log("time difference in minutes: " +timeDifference);
-      
+    console.log("time difference in minutes: " + timeDifference);
+
     //   setting frequency in variable
     var frequencyMinutes = childSnapshot.val().frequency;
-      console.log("Frequency Minutes: " + frequencyMinutes);
-    
+    console.log("Frequency Minutes: " + frequencyMinutes);
+
     //   getting the number of minutes away
     var minutesAway = Math.abs(timeDifference % frequencyMinutes);
-        console.log("Minutes Away: " + minutesAway);
-    
+    console.log("Minutes Away: " + minutesAway);
+
     // getting the next arrival time
     var nextArrival = moment(currentTime).add(minutesAway, "minutes").format("hh:mm A");
-      console.log("Next Arrival: " + nextArrival);
+    console.log("Next Arrival: " + nextArrival);
 
     //   appending the data to the table
-      $("#trainData").append("<tr><td>" + trainName + "</td><td>" +
-       trainDestination + "</td><td>" + trainFrequency + "</td><td>" +
+    $("#trainData").append("<tr><td>" + trainName + "</td><td>" +
+        trainDestination + "</td><td>" + trainFrequency + "</td><td>" +
         nextArrival + "</td><td>" + minutesAway + "</td></tr>");
 
 
     // Handle the errors
 }, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
-
 });
-
 
 // function to clear the textboxes after a submission
 function clearInputs() {
