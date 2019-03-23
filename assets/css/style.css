@@ -4,12 +4,13 @@ h1{
     font-size: 40px;
 }
 
-.jumbotron{
+h2{
+    padding-left: 10px;
     background-color: #0000cc;
     color: white;
 }
-h2{
-    padding-left: 10px;
+
+.jumbotron{
     background-color: #0000cc;
     color: white;
 }
@@ -18,12 +19,11 @@ body{
     background-image: url(../images/dust_scratches.png);
 }
 
+/* ----------- add train form ----------- */
 #train-form{
     size: 100%;
 }
 
-
-/* ----------- add train form ----------- */
 input, label {
     display:block;
 }

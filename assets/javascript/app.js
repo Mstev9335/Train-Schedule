@@ -56,11 +56,16 @@ database.ref().on("child_added", function (childSnapshot) {
 
     // --------------calculations ---------------------
     var diffTime = moment().diff(moment.unix(trainTimeInput), "minutes");
+    // console.log("difference in time: " + diffTime);
+
     var timeRemainder = moment().diff(moment.unix(trainTimeInput), "minutes") % frequency;
+    // console.log("time remainder: " + timeRemainder);
+
     var minutes = frequency - timeRemainder;
+    // console.log("minutes away: " + minutes);
 
     var nextTrainArrival = moment().add(minutes, "m").format("hh:mm A");
-    console.log("Next Arrival: " + nextTrainArrival);
+    // console.log("Next Arrival: " + nextTrainArrival);
     // -------------calculations section end ----------------
 
 
@@ -68,7 +73,6 @@ database.ref().on("child_added", function (childSnapshot) {
     $("#trainData").append("<tr><td>" + trainName + "</td><td>" +
         trainDestination + "</td><td>" + frequency + "</td><td>" +
         nextTrainArrival + "</td><td>" + minutes + "</td></tr>");
-
 
     // Handle the errors
 }, function (errorObject) {
