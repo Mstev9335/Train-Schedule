@@ -5,11 +5,12 @@ h1{
 }
 
 .jumbotron{
-    background-color: grey;
+    background-color: #0000cc;
+    color: white;
 }
 h2{
     padding-left: 10px;
-    background-color: blue;
+    background-color: #0000cc;
     color: white;
 }
 
@@ -19,11 +20,10 @@ input, label {
     display:block;
 }
 
-#add-train{
-    background-color: blue;
+#submit-btn{
+    background-color: #0000cc;
     color: white;
     font-size: 20px;
-
 }
 
 /* --------- add train form end --------- */
