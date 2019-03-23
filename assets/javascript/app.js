@@ -48,6 +48,7 @@ $("#submit-btn").on("click", function (event) {
 
 // database children
 database.ref().on("child_added", function (childSnapshot) {
+
     // store database values in variables 
     var trainName = childSnapshot.val().name;
     var trainDestination = childSnapshot.val().destination;
@@ -58,23 +59,27 @@ database.ref().on("child_added", function (childSnapshot) {
     var trainStartPretty = moment.unix(trainTime).format("HH:mm A");
     console.log("start time: "+ trainStartPretty);
 
-    //Variable to figure out the converted train time
+    //convert train time
     var trainTimeConverted = moment(trainTime, "HH:mm");
         console.log("current Time: "+trainTimeConverted);
     
-    //Declaring a time difference variable
+    //subtracting time
     var timeDifference = moment().diff(moment(trainTimeConverted), "minutes");
       console.log("time difference in minutes: " +timeDifference);
       
+    //   setting frequency in variable
     var frequencyMinutes = childSnapshot.val().frequency;
       console.log("Frequency Minutes: " + frequencyMinutes);
     
+    //   getting the number of minutes away
     var minutesAway = Math.abs(timeDifference % frequencyMinutes);
         console.log("Minutes Away: " + minutesAway);
     
+    // getting the next arrival time
     var nextArrival = moment(currentTime).add(minutesAway, "minutes").format("hh:mm A");
       console.log("Next Arrival: " + nextArrival);
 
+    //   appending the data to the table
       $("#trainData").append("<tr><td>" + trainName + "</td><td>" +
        trainDestination + "</td><td>" + trainFrequency + "</td><td>" +
         nextArrival + "</td><td>" + minutesAway + "</td></tr>");
