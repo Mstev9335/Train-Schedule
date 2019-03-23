@@ -73,7 +73,7 @@ database.ref().on("child_added", function (childSnapshot) {
     var nextArrival = moment(currentTime).add(minutesAway, "minutes").format("hh:mm A");
       console.log("Next Arrival: " + nextArrival);
 
-      $("#emplData").append("<tr><td>" + trainName + "</td><td>" +
+      $("#trainData").append("<tr><td>" + trainName + "</td><td>" +
        trainDestination + "</td><td>" + trainFrequency + "</td><td>" +
         nextArrival + "</td><td>" + minutesAway + "</td></tr>");
 
