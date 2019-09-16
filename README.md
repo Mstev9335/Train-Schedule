@@ -13,4 +13,10 @@ a form to enter in the data.  The user then clicks the submit button to add the 
 ### App starts
 ![start](/assets/images/train1.png)
 
+### Adding an additional train
+![add](/assets/images/train2.png)
+
+### This new train is added to the schedule
+![start](/assets/images/train3.png)
+
 Deployed website: https://mstev9335.github.io/Train-Schedule/
