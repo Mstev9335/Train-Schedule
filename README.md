@@ -10,4 +10,7 @@ a form to enter in the data.  The user then clicks the submit button to add the 
 * firebase
 * moment.js
 
+### App starts
+![start](/assets/images/train1.png)
+
 Deployed website: https://mstev9335.github.io/Train-Schedule/
