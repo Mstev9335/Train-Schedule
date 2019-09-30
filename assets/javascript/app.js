@@ -56,12 +56,15 @@ database.ref().on("child_added", function (childSnapshot) {
 
     // --------------calculations ---------------------
     var timeRemainder = moment().diff(moment.unix(trainTimeInput), "minutes") % frequency;
+    // testing calculations:
     // console.log("time remainder: " + timeRemainder);
 
     var minutesAway = frequency - timeRemainder;
+    // testing calculations:
     // console.log("minutes away: " + minutesAway);
 
     var nextTrainArrival = moment().add(minutesAway, "m").format("hh:mm A");
+     // testing calculations:
     // console.log("Next Arrival: " + nextTrainArrival);
     // -------------calculations section end ----------------
 
